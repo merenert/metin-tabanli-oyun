@@ -1,63 +1,60 @@
+from enum import Enum, auto, IntEnum
 
+class Slot(Enum):
+    SOL_KOL = auto()
+    SAG_KOL = auto()
+    GOVDEZIRHI = auto()
+    KOLLUK = auto()
+    AYAKKABI = auto()
+
+class El(IntEnum):
+    SAG = auto()
+    SOL = auto()
 
 class Karakter:
-    def __init__(self, isim, sinif, can, base_zirh, base_saldiri_gucu, ceviklik):
+    def __init__(self, isim, sinif, can,irk, base_zirh, base_saldiri_gucu, ceviklik,baskin_el):
         self.isim = isim
         self.sinif = sinif
         self.can = can
         self.base_zirh = base_zirh
         self.base_saldiri_gucu = base_saldiri_gucu
         self.envanter = Envanter()
+        self.irk = irk
+        self.baskin_el = baskin_el
         self.ceviklik = ceviklik
-        self.kusanilan = {
-            "sol_kol": None,
-            "govdezirhi": None,
-            "kolluk": None,
-            "ayakkabi": None,
-            "sag_kol": None,
-        }
-
-    def saldiri_gucu(self, silah_turu="sag_kol"):
-        bonus = 0
-        secili_silah = self.kusanilan.get(silah_turu)
-        if secili_silah is not None:
-            bonus = secili_silah.hasar_bonusu
-        return self.base_saldiri_gucu + bonus
+        self.kusanilan = {slot: None for slot in Slot}
 
     def zirh(self):
         bonus = 0
-        if self.kusanilan["govdezirhi"] is not None:
-            bonus += self.kusanilan["govdezirhi"].zirh_bonusu
-        if self.kusanilan["kolluk"] is not None:
-            bonus += self.kusanilan["kolluk"].zirh_bonusu
-        if self.kusanilan["ayakkabi"] is not None:
-            bonus += self.kusanilan["ayakkabi"].zirh_bonusu
+        if self.kusanilan[Slot.GOVDEZIRHI] is not None:
+            bonus += self.kusanilan[Slot.GOVDEZIRHI].zirh_bonusu
+        if self.kusanilan[Slot.KOLLUK] is not None:
+            bonus += self.kusanilan[Slot.KOLLUK].zirh_bonusu
+        if self.kusanilan[Slot.AYAKKABI] is not None:
+            bonus += self.kusanilan[Slot.AYAKKABI].zirh_bonusu
         return bonus + self.base_zirh
 
-    def esya_kusandir(self, esya):
+    def esya_kusandir(self, esya: "Ekipman", slot: Slot | None = None):
         if isinstance(esya, Silah):
-            self.kusanilan["sag_kol"] = esya
+            slot = slot or self.baskin_el
+            if slot not in (Slot.SAG_KOL, Slot.SOL_KOL):
+                raise ValueError("Silah yalnızca SAG_KOL veya SOL_KOL slotuna kuşanabilir.")
+            self.kusanilan[slot] = esya
         elif isinstance(esya, Govdezirhi):
-            self.kusanilan["govdezirhi"] = esya
-        elif isinstance(esya, Kalkan):
-            self.kusanilan["sol_kol"] = esya
+            self.kusanilan[Slot.GOVDEZIRHI] = esya
         elif isinstance(esya, Kolzirhi):
-            self.kusanilan["kolluk"] = esya
+            self.kusanilan[Slot.KOLLUK] = esya
         elif isinstance(esya, Ayakkabi):
-            self.kusanilan["ayakkabi"] = esya
+            self.kusanilan[Slot.AYAKKABI] = esya
         print(f"{self.isim}, {esya.ekipman} kuşandı.")
 
-    def esya_kusan(self):
-        self.envanter.goruntule()
-        liste = []
-        for ekipman , (a,b) in self.envanter.envanter.items():
-            liste.append(a)
-        key= input("eklemek istediğiniz eşyayı giriniz:(1/2/3/4/5...)")
-        key = int(key)
-        key = key -1
-        self.esya_kusandir(liste[key])
+    def esya_kusan(self, index: int, slot: Slot | None = None): #esya kusandır kullanarak esya kusanmayı sağlayan fonksiyon
+        liste = [kayit[0] for kayit in self.envanter.envanter.values()]
+        if not (0 <= index < len(liste)):
+            raise IndexError("Geçersiz eşya indeksi.")
+        self.esya_kusandir(liste[index], slot=slot)
 
-
+# === Envanter İşlemleri ===
 
 class Envanter:
     def __init__(self):
@@ -79,13 +76,6 @@ class Envanter:
         for ekipman , (a,b) in self.envanter.items():
             print("Envanter:\n" f"- {a.ekipman}: {b} adet")
 
-
-
-
-
-
-
-
 # === Ekipman sınıfları ===
 
 class Ekipman:
@@ -93,9 +83,10 @@ class Ekipman:
         self.ekipman = ekipman
 
 class Silah(Ekipman):
-    def __init__(self, ekipman, hasar_bonusu):
+    def __init__(self, ekipman, hasar_bonusu,engelleme):
         super().__init__(ekipman)
         self.hasar_bonusu = hasar_bonusu
+        self.engelleme = engelleme
 
 class Govdezirhi(Ekipman):
     def __init__(self, ekipman, zirh_bonusu):
@@ -112,75 +103,87 @@ class Ayakkabi(Ekipman):
         super().__init__(ekipman)
         self.zirh_bonusu = zirh_bonusu
 
-class Kalkan(Ekipman):
-    def __init__(self, ekipman, zirh_bonusu, hasar_bonusu):
-        super().__init__(ekipman)
-        self.zirh_bonusu = zirh_bonusu
-        self.hasar_bonusu = hasar_bonusu
 
 # === Ekipman örnekleri ===
 
-Uzun_kilic = Silah("Uzun Kılıç", hasar_bonusu=5)
+Uzun_kilic = Silah("Uzun Kılıç",engelleme=0, hasar_bonusu=5)
 demir_zirh = Govdezirhi("Demir Zırh", zirh_bonusu=10)
 deri_kolluk = Kolzirhi("Deri Kolluk", zirh_bonusu=5)
 deri_ayakkabi = Ayakkabi("Deri Ayakkabı", zirh_bonusu=3)
-post_kalkan = Kalkan("Post Kalkan", zirh_bonusu=5, hasar_bonusu=3)
+post_kalkan = Silah("Post Kalkan", engelleme=5, hasar_bonusu=3)
 
-# === Karakter sınıfları ===
+# === Karakter sınıfları örnekleri ===
 
 KARAKTER_SINIFLARI = {
     "okçu": {
-        "can": 80,
-        "base_zirh": 15,
-        "base_saldiri_gucu": 30,
+        "can": 0,
+        "base_saldiri_gucu": 20,
         "ceviklik": 2,
     },
     "savasci": {
-        "can": 100,
-        "base_zirh": 20,
+        "can": 10,
         "base_saldiri_gucu": 15,
         "ceviklik": 3,
     }
 }
 
+# === Irk örnekleri ===
+IRKLAR = {
+    "elf": {
+        "can": 80,
+        "base_zirh": 0,
+        "base_saldiri_gucu": 20,
+        "ceviklik": 2,
+        "aciklama": "Hafif yapılı, çevik, menzilli savaşta ustalaşmış."
+    },
+    "ork": {
+        "can": 130,
+        "base_zirh": 5,
+        "base_saldiri_gucu": 15,
+        "ceviklik": -1,
+        "aciklama": "Güçlü ama hantal. Yakın dövüşte avantajlı."
+    },
+    "cuce": {
+        "can": 150,
+        "base_zirh": 3,
+        "base_saldiri_gucu": 20,
+        "ceviklik": -1,
+        "aciklama": "Dayanıklı ve zırhlı, ama daha yavaş."
+    },
+    "insan": {
+        "can": 100,
+        "base_zirh": 0,
+        "base_saldiri_gucu": 18,
+        "ceviklik": 1,
+        "aciklama": "Her şeyden biraz, özel bir avantajı yok."
+    },
+}
+
+
+
+
 # === Karakter oluşturma fonksiyonu ===
+def karakter_olustur(isim:str, el:El, secilen_irk:int, secilen_sinif:int):
+    if el not in ["sag", "sol"]:
+        raise ValueError("Baskın el ya 'sag' ya da 'sol' olmalı.")
+    if secilen_irk not in IRKLAR:
+        raise ValueError("Geçersiz ırk seçimi.")
+    if secilen_sinif not in KARAKTER_SINIFLARI:
+        raise ValueError("Geçersiz sınıf seçimi.")
 
-def karakter_olustur():
-    isim = input("Karakter ismini gir: ")
-
-    print("Sınıf seçimi:")
-    siniflar = list(KARAKTER_SINIFLARI.keys())
-    for i, sinif_adi in enumerate(siniflar, 1):
-        print(f"{i}. {sinif_adi.capitalize()}")
-
-    while True:
-        secim = input("Seçiminiz (1/2): ")
-        if secim in ["1", "2"]:
-            secilen_sinif = siniflar[int(secim) - 1]
-            break
-        else:
-            print("Geçerli bir sayı girin (1 veya 2).")
-
+    irk_statlar = IRKLAR[secilen_irk]
     statlar = KARAKTER_SINIFLARI[secilen_sinif]
 
     karakter = Karakter(
         isim=isim,
+        irk=secilen_irk,
         sinif=secilen_sinif,
-        can=statlar["can"],
-        base_zirh=statlar["base_zirh"],
-        base_saldiri_gucu=statlar["base_saldiri_gucu"],
-        ceviklik=statlar["ceviklik"]
+        can=statlar["can"] + irk_statlar["can"],
+        base_zirh=irk_statlar["base_zirh"],
+        base_saldiri_gucu=statlar["base_saldiri_gucu"] + irk_statlar["base_saldiri_gucu"],
+        ceviklik=statlar["ceviklik"] + irk_statlar["ceviklik"],
+        baskin_el=el
     )
     return karakter
-
-# === Karakter oluşturuluyor ===
-
-oyuncu = karakter_olustur()
-print(f"{oyuncu.isim} ({oyuncu.sinif}) sınıfından.")
-oyuncu.envanter.ekle(Uzun_kilic)
-oyuncu.envanter.ekle(demir_zirh)
-oyuncu.envanter.ekle(deri_ayakkabi)
-oyuncu.envanter.ekle(post_kalkan)
-oyuncu.envanter.ekle(deri_kolluk)
 
 
