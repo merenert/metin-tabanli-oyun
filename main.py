@@ -1,4 +1,6 @@
-from enum import Enum, auto, IntEnum
+from enum import Enum, auto
+from dataclasses import dataclass, field
+from typing import Dict, Optional
 
 class Slot(Enum):
     SOL_KOL = auto()
@@ -7,183 +9,154 @@ class Slot(Enum):
     KOLLUK = auto()
     AYAKKABI = auto()
 
-class El(IntEnum):
-    SAG = auto()
-    SOL = auto()
+@dataclass(frozen=True, slots=True)
+class RaceProto:
+    id: str
+    can: int
+    base_zirh: int
+    base_saldiri_gucu: int
+    ceviklik: int
+    dominant_el: Slot
 
-class Karakter:
-    def __init__(self, isim, sinif, can,irk, base_zirh, base_saldiri_gucu, ceviklik,baskin_el):
-        self.isim = isim
-        self.sinif = sinif
-        self.can = can
-        self.base_zirh = base_zirh
-        self.base_saldiri_gucu = base_saldiri_gucu
-        self.envanter = Envanter()
-        self.irk = irk
-        self.baskin_el = baskin_el
-        self.ceviklik = ceviklik
-        self.kusanilan = {slot: None for slot in Slot}
+@dataclass(frozen=True, slots=True)
+class ClassProto:
+    id: str
+    can: int
+    base_saldiri_gucu: int
+    ceviklik: int
 
-    def zirh(self):
-        bonus = 0
-        if self.kusanilan[Slot.GOVDEZIRHI] is not None:
-            bonus += self.kusanilan[Slot.GOVDEZIRHI].zirh_bonusu
-        if self.kusanilan[Slot.KOLLUK] is not None:
-            bonus += self.kusanilan[Slot.KOLLUK].zirh_bonusu
-        if self.kusanilan[Slot.AYAKKABI] is not None:
-            bonus += self.kusanilan[Slot.AYAKKABI].zirh_bonusu
-        return bonus + self.base_zirh
-
-    def esya_kusandir(self, esya: "Ekipman", slot: Slot | None = None):
-        if isinstance(esya, Silah):
-            slot = slot or self.baskin_el
-            if slot not in (Slot.SAG_KOL, Slot.SOL_KOL):
-                raise ValueError("Silah yalnızca SAG_KOL veya SOL_KOL slotuna kuşanabilir.")
-            self.kusanilan[slot] = esya
-        elif isinstance(esya, Govdezirhi):
-            self.kusanilan[Slot.GOVDEZIRHI] = esya
-        elif isinstance(esya, Kolzirhi):
-            self.kusanilan[Slot.KOLLUK] = esya
-        elif isinstance(esya, Ayakkabi):
-            self.kusanilan[Slot.AYAKKABI] = esya
-        print(f"{self.isim}, {esya.ekipman} kuşandı.")
-
-    def esya_kusan(self, index: int, slot: Slot | None = None): #esya kusandır kullanarak esya kusanmayı sağlayan fonksiyon
-        liste = [kayit[0] for kayit in self.envanter.envanter.values()]
-        if not (0 <= index < len(liste)):
-            raise IndexError("Geçersiz eşya indeksi.")
-        self.esya_kusandir(liste[index], slot=slot)
-
+#Ekipman sınıfı
+@dataclass(frozen=True, slots=True)
+class ItemProto:
+    id: str
+    name: str
+    slots: tuple[Slot,...]
+    cift_el_kullan: bool = False
+    zirh_bonusu: int = 0
+    hasar_bonusu: int = 0
+    engelleme: int = 0
 # === Envanter İşlemleri ===
 
 class Envanter:
     def __init__(self):
-        self.envanter = {}
+        self.inventory: dict[str,int]= {}
 
-    def ekle(self,ekipman):
-        if ekipman in self.envanter:
-            self.envanter[ekipman][1]+= 1
+    def ekle(self, item_id: str, adet: int = 1):
+        if adet <= 0:
+            raise ValueError("adet pozitif olmalı")
+        self.inventory[item_id] = self.inventory.get(item_id, 0) + adet
+
+    def cikart(self,item_id: str, adet: int = 1):
+        if adet <= 0:
+            raise ValueError("adet pozitif bir sayı olmalı")
+        try:
+            mevcut = self.inventory[item_id]
+        except KeyError:
+            raise ValueError("item envanterde yok")
+        if adet > mevcut:
+            raise ValueError(f"Envantede yalnızca {mevcut} adet var; {adet} çıkarılamaz")
+        kalan = mevcut - adet
+        if kalan:
+            self.inventory[item_id] = kalan
         else:
-            self.envanter[ekipman] = [ekipman, 1]
+            self.inventory.pop(item_id)
+    def miktar(self, item_id: str) -> int:
+        return self.inventory.get(item_id, 0)
 
-    def cikart(self,ekipman):
-        if ekipman in self.envanter:
-            self.envanter[ekipman][1] -= 1
-        if self.envanter[ekipman][1] <= 0:
-            self.envanter.pop(ekipman)
+    def list_idleri(self) -> list[str]:
+        return list(self.inventory.keys())
+#== Karakter Oluşturma ve Envanter fonksiyonları ==
+@dataclass(slots=True)
+class Karakter:
+    isim: str
+    sinif: str
+    can: int
+    irk: str
+    base_zirh: int
+    base_saldiri_gucu: int
+    ceviklik: int
+    dominant_el: Slot
+    envanter: Envanter = field(default_factory=Envanter)
+    kusanilan: Dict[Slot, Optional[ItemProto]] = field(init=False)
 
-    def goruntule(self):
-        for ekipman , (a,b) in self.envanter.items():
-            print("Envanter:\n" f"- {a.ekipman}: {b} adet")
+    def __post_init__(self):
+        self.kusanilan = {slot: None for slot in Slot}
 
-# === Ekipman sınıfları ===
+    @classmethod
+    def karakterolustur(cls, name: str, race_id: str, class_id: str,
+               hand: Slot | None = None)-> Karakter :
+        race = IRKLAR[race_id]
+        klass = SINIFLAR[class_id]
+        dom = hand or race.dominant_el
 
-class Ekipman:
-    def __init__(self, ekipman):
-        self.ekipman = ekipman
+        return cls(
+            isim=name,
+            irk=race_id,
+            sinif=class_id,
+            can=race.can + klass.can,
+            base_zirh=race.base_zirh,
+            base_saldiri_gucu=race.base_saldiri_gucu + klass.base_saldiri_gucu,
+            ceviklik=race.ceviklik + klass.ceviklik,
+            dominant_el=dom,
+        )
 
-class Silah(Ekipman):
-    def __init__(self, ekipman, hasar_bonusu,engelleme):
-        super().__init__(ekipman)
-        self.hasar_bonusu = hasar_bonusu
-        self.engelleme = engelleme
+    def zirh(self):
+        bonus = sum(p.zirh_bonusu for p in self.kusanilan.values() if p)
+        return bonus + self.base_zirh
 
-class Govdezirhi(Ekipman):
-    def __init__(self, ekipman, zirh_bonusu):
-        super().__init__(ekipman)
-        self.zirh_bonusu = zirh_bonusu
+    def kusan(self, item_id:str, slot: Slot | None = None):
+        try:
+            proto = ITEMS[item_id]
+        except KeyError:
+            raise ValueError(f"Geçersiz item id: {item_id}") from None
+        if self.envanter.miktar(item_id) < 1: ##
+            raise ValueError("Envanterde bu eşyadan yok")
 
-class Kolzirhi(Ekipman):
-    def __init__(self, ekipman, zirh_bonusu):
-        super().__init__(ekipman)
-        self.zirh_bonusu = zirh_bonusu
+            # 2) Parametre uyumu
+        if len(proto.slots) > 1 and proto.cift_el_kullan and slot is not None:
+            raise ValueError("eşya iki el isteğinden slot seçilemez")
+        if slot is not None and slot not in proto.slots:
+            raise ValueError("Bu item belirtilen slota takılamaz")
 
-class Ayakkabi(Ekipman):
-    def __init__(self, ekipman, zirh_bonusu):
-        super().__init__(ekipman)
-        self.zirh_bonusu = zirh_bonusu
+            # 3) Hangi slot(lar)?
+        if len(proto.slots) > 1 and proto.cift_el_kullan:
+            actual_slots = proto.slots  # tüm mecburi slotlar
+        else:
+            chosen = slot or self.dominant_el  # verilen ya da dominant
+            if chosen not in proto.slots:
+                raise ValueError("Dominant el bu eşyayla uyuşmuyor")
+            actual_slots = (chosen,)
 
+            # 4) Doluluk kontrolü
+        for s in actual_slots:
+            if self.kusanilan[s] is not None:
+                raise ValueError(f"{s.name} slotu dolu")
+
+            # 5) Kuşan & stok düş
+        for s in actual_slots:
+            self.kusanilan[s] = proto
+        self.envanter.cikart(item_id, 1)
 
 # === Ekipman örnekleri ===
-
-Uzun_kilic = Silah("Uzun Kılıç",engelleme=0, hasar_bonusu=5)
-demir_zirh = Govdezirhi("Demir Zırh", zirh_bonusu=10)
-deri_kolluk = Kolzirhi("Deri Kolluk", zirh_bonusu=5)
-deri_ayakkabi = Ayakkabi("Deri Ayakkabı", zirh_bonusu=3)
-post_kalkan = Silah("Post Kalkan", engelleme=5, hasar_bonusu=3)
+ITEMS: dict[str, ItemProto] = {
+    "iron_sword": ItemProto("iron_sword", "Iron Sword", (Slot.SAG_KOL, Slot.SOL_KOL), hasar_bonusu=5,engelleme=1),
+    "wood_shield": ItemProto("wood_shield", "Wooden Shield", (Slot.SOL_KOL,Slot.SAG_KOL), zirh_bonusu=2,engelleme=3),
+    "leather_boots": ItemProto("leather_boots", "Leather Boots", (Slot.AYAKKABI,), zirh_bonusu=3),
+    "leather_suit": ItemProto("leather_suit", "Leather Suit", (Slot.GOVDEZIRHI,), zirh_bonusu=15),
+    "leather_arm_floats": ItemProto("leather_arm_floats", "Leather Arm FLoats", (Slot.KOLLUK,), zirh_bonusu=8)
+}
 
 # === Karakter sınıfları örnekleri ===
 
-KARAKTER_SINIFLARI = {
-    "okçu": {
-        "can": 0,
-        "base_saldiri_gucu": 20,
-        "ceviklik": 2,
-    },
-    "savasci": {
-        "can": 10,
-        "base_saldiri_gucu": 15,
-        "ceviklik": 3,
-    }
+SINIFLAR: dict[str, ClassProto] = {
+    "okcu":  ClassProto("okcu", 0, 20, 2),
+    "savasci": ClassProto("savasci", 10, 15, 3),
 }
 
 # === Irk örnekleri ===
-IRKLAR = {
-    "elf": {
-        "can": 80,
-        "base_zirh": 0,
-        "base_saldiri_gucu": 20,
-        "ceviklik": 2,
-        "aciklama": "Hafif yapılı, çevik, menzilli savaşta ustalaşmış."
-    },
-    "ork": {
-        "can": 130,
-        "base_zirh": 5,
-        "base_saldiri_gucu": 15,
-        "ceviklik": -1,
-        "aciklama": "Güçlü ama hantal. Yakın dövüşte avantajlı."
-    },
-    "cuce": {
-        "can": 150,
-        "base_zirh": 3,
-        "base_saldiri_gucu": 20,
-        "ceviklik": -1,
-        "aciklama": "Dayanıklı ve zırhlı, ama daha yavaş."
-    },
-    "insan": {
-        "can": 100,
-        "base_zirh": 0,
-        "base_saldiri_gucu": 18,
-        "ceviklik": 1,
-        "aciklama": "Her şeyden biraz, özel bir avantajı yok."
-    },
+IRKLAR: dict[str, RaceProto] = {
+    "elf": RaceProto("elf", 80, 0, 20, 2, Slot.SOL_KOL),
+    "ork": RaceProto("ork", 130, 5, 15, -1, Slot.SAG_KOL),
 }
-
-
-
-
-# === Karakter oluşturma fonksiyonu ===
-def karakter_olustur(isim:str, el:El, secilen_irk:int, secilen_sinif:int):
-    if el not in ["sag", "sol"]:
-        raise ValueError("Baskın el ya 'sag' ya da 'sol' olmalı.")
-    if secilen_irk not in IRKLAR:
-        raise ValueError("Geçersiz ırk seçimi.")
-    if secilen_sinif not in KARAKTER_SINIFLARI:
-        raise ValueError("Geçersiz sınıf seçimi.")
-
-    irk_statlar = IRKLAR[secilen_irk]
-    statlar = KARAKTER_SINIFLARI[secilen_sinif]
-
-    karakter = Karakter(
-        isim=isim,
-        irk=secilen_irk,
-        sinif=secilen_sinif,
-        can=statlar["can"] + irk_statlar["can"],
-        base_zirh=irk_statlar["base_zirh"],
-        base_saldiri_gucu=statlar["base_saldiri_gucu"] + irk_statlar["base_saldiri_gucu"],
-        ceviklik=statlar["ceviklik"] + irk_statlar["ceviklik"],
-        baskin_el=el
-    )
-    return karakter
 
 
