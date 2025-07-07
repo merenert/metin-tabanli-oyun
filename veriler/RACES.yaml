@@ -1,0 +1,14 @@
+- id: "elf"
+  can: 80
+  base_zirh: 0
+  base_saldiri_gucu: 20
+  ceviklik: 2
+  dominant_el: OyuncuSlotu.SOL_KOL
+
+- id: "ork"
+  can: 130
+  base_zirh: 5
+  base_saldiri_gucu: 15
+  ceviklik: -1
+  dominant_el: OyuncuSlotu.SAG_KOL
+

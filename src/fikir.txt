@@ -1,0 +1,130 @@
+Taktiksel Sıra Tabanlı RPG – Oyun Tasarım Belgesi (Güncellenmiş ve Genişletilmiş)
+1. Genel Bakış
+Oyun Adı: (Henüz belirlenmedi)
+
+Tür: Taktiksel sıra tabanlı RPG (bağlamsal ve dinamik savaş sistemleri ile)
+
+Tema: Fantastik, orta çağ atmosferinde geçen hayatta kalma, keşif, savaş ve sosyal etkileşim.
+
+2. Oyuncu ve Ekip Sistemi
+Oyuncu bireysel bir karakteri ya da küçük bir grubu kontrol eder.
+
+Karakterler sınıf, yetenek ve mizaca göre çeşitlenir.
+
+Mizaçlar (sert, kurnaz, karizmatik vb.) sosyal sistemleri ve bazı savaş tepkilerini etkiler.
+
+Sağlak/solak tercihi, animasyonlar ve özel komboları etkiler.
+
+3. Savaş Sistemi (Yeniden Tasarlanmış)
+
+A. Dinamik Sıra Sistemi
+Klasik sıra tabanlı sistem gibi çalışır, ancak tamamen dondurulmuş zaman yerine aktif zaman dilimlerine dayanır.
+
+Her karakterin çevikliği/kararlılığı hamle sayısını etkiler:
+
+Örneğin hızlı bir karakter, düşmanı iki kere hareket etmeden önce iki küçük hamle yapabilir.
+
+Sıra hissi minimal düzeyde, ancak stratejik ögeler korunur.
+
+B. Bağlamsal Savaş Türleri (Yeni)
+| Tür              | Açıklama               | Tempo              | Özel Mekanik                            |
+| ---------------- | ---------------------- | ------------------ | --------------------------------------- |
+| **Bar Kavgası**  | Kalabalık, ani, kaotik | Hızlı              | Refleks minigame'leri, çevre etkileşimi |
+| **Pusu**         | Avantajlı başlama      | Yüksek (ilk fazda) | İlk tur ekstra aksiyonlar               |
+| **Takım Savaşı** | Hazırlıklı savaş       | Orta               | Pozisyon ve kombo etkili                |
+| **Düello**       | Onurlu 1v1             | Düşük-Orta         | Kamera odaklı, yüksek kontrol           |
+| **Yaratık Avı**  | Büyük boss savaşları   | Evreli tempo       | Dev yaratık saldırı desenleri           |
+
+
+C. Mikro-Aksiyonlar ve Reaksiyonlar
+Oyuncu ve düşmanlar, belirli anlarda reaksiyon minigame’leriyle müdahale edebilir.
+
+Örn: Bir saldırıya karşı hızlı tepki verirsen blok yerine kontra yapabilirsin.
+
+D. Tempo Dinamikleri (Yeni)
+Savaşların temposu bağlama göre değişir:
+
+Bar kavgası = refleks odaklı, hızlı.
+
+Taktiksel savaş = düşünme süresi tanınır.
+
+Savaşın ortamı, karar süresini ve aksiyon süresini etkiler.
+
+Kritik anlarda zaman yavaşlar (killcam, bitirici hareket vb.).
+
+4. Aksiyon Sistemi (Modüler)
+Aksiyonlar: saldırı, kuşanma, çevre kullanımı, büyü, özel hamle vb.
+
+Her karakter sınıfı kendi özel aksiyon paketine sahiptir.
+
+Aksiyonlar bağlama göre aktif/pasif olabilir (örn. bar kavgasında “tuzak kur” aksiyonu devre dışı kalabilir).
+
+5. Yapay Zeka
+Durumsal AI: Düşman bağlama göre davranış değiştirir (örn. bir düşman bar kavgasında sadece yumruk kullanabilir).
+
+AI çevre, pozisyon, moral, grup yapısına göre karar verir.
+
+Geliştirilebilir öğrenen sistem planlanır.
+
+6. Envanter ve Ekipman
+Ağırlık, hacim, ve kuşanma süresi etkili.
+
+Silahlar çift el/tek el, bloklama, özel efekt gibi özelliklerle gelir.
+
+Sağ/sol el kombinasyonları, kombo sistemini etkiler.
+
+7. Harita, Pozisyon ve Keşif
+Açık dünya haritası, taktiksel grid sistemiyle iç içe çalışır.
+
+Dövüş haritaları, oyuncunun konumuna göre anlık olarak oluşur, yükleme ekranı yoktur.
+
+Her alanın kendine özgü hareket/savaş etkileri vardır (orman, bataklık, taşlık, iç mekân vb.).
+
+8. Sosyal ve Sistemsel Etkileşimler
+Pazarlık, hırsızlık, flört, ikna gibi sosyal becerilerle olaylara farklı yön verilebilir.
+
+Suç sistemleri (hırsızlık, saldırı) çevre tepkisini etkiler.
+
+Hırsızlık, açık dünyada gerçek zamanlı gerçekleşir. Yakalanırsan sıra sistemiyle kaçış/kavga başlar.
+
+9. Savaş-Açık Dünya Entegrasyonu (Yeni)
+Açık dünya ve savaş ayrımı minimumda tutulur.
+
+Savaşlar oyuncunun bulunduğu konum üzerinden başlar.
+
+Örn: Barın içindeysen masa devirebilirsin, ormanlık alandaysan çevresel avantajlar kullanılır.
+
+Kamera ve UI geçişleri yumuşak olur, yükleme ekranı yok.
+
+10. Kodlama & Prototipleme (Özet)
+Bu kısım teknik geliştiricilere yöneliktir. (Detaylar önceki belgede kalabilir.)
+
+11. Gelişim Yol Haritası (Güncellenmiş)
+A. Temel Sistemler
+Dinamik sıra sistemi ve bağlamsal savaş çekirdeği
+
+Aksiyon altyapısı ve çevre etkileşimi
+
+B. Bağlamsal Savaş Türleri
+Bar kavgası prototipi
+
+Takım savaşları
+
+Canavar avı (evreli sistemler)
+
+C. Reaksiyon ve Minigame Sistemi
+Hızlı tepki sekansları, refleks testleri
+
+D. Açık Dünya Etkileşimi
+Hırsızlık, çevreyle lootlama, NPC davranışları
+
+12. Uzun Vadeli Genişlemeler
+Yetenek ağacı, hava durumu, arazi dinamikleri
+
+Fısıltı sistemi, dünya olaylarına tepki
+
+Zaman takibi, mevsimler, NPC rotaları
+
+Koordineli AI düşmanları, grup komboları
+
+
