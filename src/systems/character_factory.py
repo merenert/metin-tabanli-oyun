@@ -2,6 +2,12 @@ from dataclasses import dataclass, field
 from typing import Dict, Optional , Self
 from core.enums import OyuncuSlotu
 from systems.character import Karakter
+from veriler import veriyukleyici
+from systems.eventbus import EventBus, event_bus
+
+RACES = veriyukleyici.load_races()
+CLASSES = veriyukleyici.load_classes()
+
 
 class Karakterolusturucu:
     @staticmethod
@@ -18,10 +24,10 @@ class Karakterolusturucu:
             raise ValueError(f"Geçersiz sınıf: {class_id}")
         dom = hand or race.dominant_el
 
-        event_bus.publish("karakter_olustu", {
-            "isim": isim,
-            "irk": irk_id,
-            "sinif": sinif_id
+        event_bus.publish("karakter_olustu",{
+            "isim": name,
+            "irk": race_id,
+            "sinif": class_id
         })
 
         return Karakter(

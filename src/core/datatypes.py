@@ -15,6 +15,7 @@ class ClassProto:
     can: int
     base_saldiri_gucu: int
     ceviklik: int
+    base_zirh: int
 
 #Ekipman sınıfı
 @dataclass(frozen=True, slots=True)

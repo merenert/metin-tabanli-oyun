@@ -1,19 +1,20 @@
-- id: "iron_sword"
-  name: "Iron Sword"
+"iron sword":
+  id: "iron_sword"
   slots: [SOL_KOL, SAG_KOL,]
   cift_el_kullan: false
   zirh_bonusu: 0
   hasar_bonusu: 5
   engelleme: 1
 
-- id: "wood-shield"
-  name: "Wood Shield"
+"wood shield":
+  id: "wood-shield"
   slots: [SOL_KOL, SAG_KOL,]
   cift_el_kullan: false
   zirh_bonusu: 2
   engelleme: 3
 
-- id: "leather_boots"
+"leather boots":
+  id: "leather_boots"
   name:
   slots: [OyuncuSlotu.AYAKKABI,]
   zirh_bonusu: 3

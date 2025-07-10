@@ -1,4 +1,6 @@
-- id: "okcu"
+"okcu":
+  class_id: "okcu"
   can: 0
   base_saldiri_gucu: 20
   ceviklik: 2
+  base_zirh: 0
