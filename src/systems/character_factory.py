@@ -17,7 +17,7 @@ class Karakterolusturucu:
         try:
             race = RACES[race_id]
         except KeyError:
-            raise ValueError(f"Geçersiz ırk: {irk_id}")
+            raise ValueError(f"Geçersiz ırk: {race_id}")
 
         try:
             klass = CLASSES[class_id]

@@ -3,7 +3,7 @@ import os
 
 from core.enums import OyuncuSlotu
 from core.datatypes import RaceProto, ClassProto , ItemProto
-from typing import cast
+from typing import cast, Tuple
 
 BASE_DIR = os.path.dirname(__file__)
 
@@ -15,7 +15,7 @@ def load_items():
         key: ItemProto(
             item_id=key,
             name=veri["name"],
-            slots=cast(tuple[OyuncuSlotu, ...], (OyuncuSlotu[s] for s in veri["slots"])),
+            slots=cast(tuple[OyuncuSlotu, ...], tuple(OyuncuSlotu[s] for s in veri["slots"])),
             cift_el_kullan=veri.get("cift_el_kullan", False),
             zirh_bonusu=veri.get("zirh_bonusu", 0),
             hasar_bonusu=veri.get("hasar_bonusu", 0),
