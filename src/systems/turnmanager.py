@@ -26,6 +26,7 @@ class TurnManager:
             "yeni": yeni_karakter,
             "tur": self.tur
         })
-
         return yeni_karakter
+
+
 

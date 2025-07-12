@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from core.enums import OyuncuSlotu
 @dataclass(frozen=True, slots=True)
 class RaceProto:
-    id: str
+    race_id: str
     can: int
     base_zirh: int
     base_saldiri_gucu: int
@@ -11,7 +11,7 @@ class RaceProto:
 
 @dataclass(frozen=True, slots=True)
 class ClassProto:
-    id: str
+    class_id: str
     can: int
     base_saldiri_gucu: int
     base_ceviklik: int
@@ -28,3 +28,10 @@ class ItemProto:
     hasar_bonusu: int = 0
     engelleme: int = 0
     ceviklik_bonusu: int = 0
+
+@dataclass(frozen=True)
+class MapRegion:
+    region_id: str
+    name: str
+    komsular:list[str]
+    npc_idleri:list[str]

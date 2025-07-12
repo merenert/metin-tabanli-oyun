@@ -9,6 +9,7 @@ from systems.character_factory import Karakterolusturucu
 from systems.combat import CombatSystem
 ITEMS = veriyukleyici.load_items()
 
+
 #====class tanımı====
 @dataclass(slots=True)
 class Karakter:
@@ -20,6 +21,7 @@ class Karakter:
     base_saldiri_gucu: int
     base_ceviklik: int
     dominant_el: OyuncuSlotu
+    bulundugu_bolge: str
     envanter: Envanter = field(default_factory=Envanter)
     kusanilan: Dict[OyuncuSlotu, Optional[ItemProto]] = field(init=False)
     combat_system: CombatSystem = field(init=False)
@@ -121,3 +123,34 @@ class Karakter:
                 "el": s
             })
         self.envanter.cikart(item_id, 1)
+
+    def bolge_degistir(self, yeni_bolge: str, regions: dict[str, MapRegion]) -> bool:
+        mevcut = regions[self.bulundugu_bolge_id]
+        if yeni_bolge not in mevcut.komsular:
+            return False
+
+        onceki = self.bulundugu_bolge_id
+        self.bulundugu_bolge = yeni_bolge
+
+        event_bus.publish("bolge_degisti", {
+            "karakter": self,
+            "onceki": onceki,
+            "yeni": yeni_bolge
+        })
+
+        return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

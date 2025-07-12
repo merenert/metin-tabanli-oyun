@@ -17,3 +17,35 @@
   slots: [AYAKKABI,]
   zirh_bonusu: 3
   ceviklik_bonusu: 1
+
+"longbow":
+  name: "longbow"
+  slots: [SAG_KOL, SOL_KOL,]
+  cift_el_kullan: true
+  hasar_bonusu: 8
+
+"chainmail_armor":
+  name: "chainmail_armor"
+  slots: [GOVDEZIRHI,]
+  zirh_bonusu: 6
+  ceviklik_bonusu: -2
+
+"dagger":
+  name: "dagger"
+  slots: [SAG_KOL, SOL_KOL,]
+  cift_el_kullan: false
+  hasar_bonusu: 3
+  ceviklik_bonusu: 2
+
+"plate_gauntlets":
+  name: "plate_gauntlets"
+  slots: [SAG_EL, SOL_EL,]
+  zirh_bonusu: 5
+  hasar_bonusu: 1
+
+"great_axe":
+  name: "great_axe"
+  slots: [SAG_KOL, SOL_KOL,]
+  cift_el_kullan: true
+  hasar_bonusu: 12
+  engelleme: -2

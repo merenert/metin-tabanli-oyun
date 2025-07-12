@@ -1,16 +1,64 @@
-"elf":
-  race_id: "elf"
-  can: 80
-  base_zirh: 0
-  base_saldiri_gucu: 20
-  base_ceviklik: 2
-  dominant_el: SOL_KOL
 
-"ork":
-  race_id: "ork"
-  can: 130
+insan:
+  race_id: "insan"
+  can: 100
   base_zirh: 5
-  base_saldiri_gucu: 15
-  base_ceviklik: -1
+  base_saldiri_gucu: 10
+  base_ceviklik: 8
   dominant_el: SAG_KOL
 
+elf:
+  race_id: "elf"
+  can: 80
+  base_zirh: 3
+  base_saldiri_gucu: 8
+  base_ceviklik: 15
+  dominant_el: SOL_KOL
+
+cuce:
+  race_id: "cuce"
+  can: 120
+  base_zirh: 12
+  base_saldiri_gucu: 15
+  base_ceviklik: 5
+  dominant_el: SAG_KOL
+
+ork:
+  race_id: "ork"
+  can: 130
+  base_zirh: 8
+  base_saldiri_gucu: 18
+  base_ceviklik: 6
+  dominant_el: SAG_KOL
+
+goblin:
+  race_id: "goblin"
+  can: 60
+  base_zirh: 2
+  base_saldiri_gucu: 6
+  base_ceviklik: 20
+  dominant_el: SAG_KOL
+
+troll:
+  race_id: "troll"
+  can: 180
+  base_zirh: 15
+  base_saldiri_gucu: 25
+  base_ceviklik: 3
+  dominant_el: SAG_KOL
+
+vampir:
+  race_id: "vampir"
+  can: 90
+  base_zirh: 6
+  base_saldiri_gucu: 12
+  base_ceviklik: 14
+  dominant_el: SOL_KOL
+
+centaur:
+  race_id: "centaur"
+  can: 110
+  base_zirh: 8
+  base_saldiri_gucu: 14
+  base_ceviklik: 12
+  dominant_el: SAG_KOL

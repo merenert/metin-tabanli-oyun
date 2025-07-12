@@ -1,6 +1,43 @@
-"okcu":
+okcu:
   class_id: "okcu"
   can: 0
   base_saldiri_gucu: 20
   base_ceviklik: 2
   base_zirh: 0
+
+savasci:
+  class_id: "savasci"
+  can: 50
+  base_saldiri_gucu: 15
+  base_ceviklik: -2
+  base_zirh: 10
+
+
+hirsiz:
+  class_id: "hirsiz"
+  can: -10
+  base_saldiri_gucu: 8
+  base_ceviklik: 15
+  base_zirh: -3
+
+
+paladin:
+  class_id: "paladin"
+  can: 40
+  base_saldiri_gucu: 12
+  base_ceviklik: -3
+  base_zirh: 8
+
+barbaryan:
+  class_id: "barbaryan"
+  can: 60
+  base_saldiri_gucu: 22
+  base_ceviklik: 3
+  base_zirh: 2
+
+assassin:
+  class_id: "assassin"
+  can: -15
+  base_saldiri_gucu: 18
+  base_ceviklik: 12
+  base_zirh: -2

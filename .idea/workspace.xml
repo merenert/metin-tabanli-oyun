@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f86d1c09-0316-41eb-916f-243620a1e43a" name="Changes" comment="_">
-      <change afterPath="$PROJECT_DIR$/src/systems/turnmanager.py" afterDir="false" />
+    <list default="true" id="f86d1c09-0316-41eb-916f-243620a1e43a" name="Changes" comment="turn manager temelleri ve testleri tamamlandı">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/combat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/datatypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/datatypes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fikir.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/character.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/character.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/character_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/character_factory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/loglayici.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/loglayici.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/turnmanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/turnmanager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/CLASSES.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/CLASSES.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/ITEMS.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/ITEMS.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/RACES.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/RACES.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/veriler/veriyukleyici.py" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/veriyukleyici.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,32 +53,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.character.executor": "Run",
-    "Python.character_factory.executor": "Run",
-    "Python.combat.executor": "Run",
-    "Python.datatypes.executor": "Run",
-    "Python.deneme.executor": "Run",
-    "Python.eventbus.executor": "Run",
-    "Python.inventory.executor": "Run",
-    "Python.loglayici.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.savegame.executor": "Run",
-    "Python.tests.executor": "Run",
-    "Python.veriyukleyici.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.character_factory.executor&quot;: &quot;Run&quot;,
+    &quot;Python.combat.executor&quot;: &quot;Run&quot;,
+    &quot;Python.datatypes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.deneme.executor&quot;: &quot;Run&quot;,
+    &quot;Python.eventbus.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inventory.executor&quot;: &quot;Run&quot;,
+    &quot;Python.loglayici.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.savegame.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.veriyukleyici.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Meren\PycharmProjects\Metintabanlıoyun\tests" />
@@ -146,7 +149,9 @@
       <workItem from="1752160860683" duration="2889000" />
       <workItem from="1752231341325" duration="7486000" />
       <workItem from="1752252110962" duration="1721000" />
-      <workItem from="1752313332959" duration="17431000" />
+      <workItem from="1752313332959" duration="22061000" />
+      <workItem from="1752342368379" duration="2368000" />
+      <workItem from="1752356373783" duration="2400000" />
     </task>
     <task id="LOCAL-00001" summary="envanterden eşya kuşanmanın basit mantığı bitti">
       <option name="closed" value="true" />
@@ -212,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752320430493</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="turn manager temelleri ve testleri tamamlandı">
+      <option name="closed" value="true" />
+      <created>1752333391661</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1752333391661</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,10 +246,11 @@
     <MESSAGE value="envanterden eşya kuşanmanın basit mantığı bitti" />
     <MESSAGE value="bazı önemli yapısal değişiklikler" />
     <MESSAGE value="_" />
-    <option name="LAST_COMMIT_MESSAGE" value="_" />
+    <MESSAGE value="turn manager temelleri ve testleri tamamlandı" />
+    <option name="LAST_COMMIT_MESSAGE" value="turn manager temelleri ve testleri tamamlandı" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1752332143067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1752333515124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$deneme.coverage" NAME="deneme Coverage Results" MODIFIED="1748097600751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$inventory.coverage" NAME="inventory Coverage Results" MODIFIED="1751799386488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/core" />
     <SUITE FILE_PATH="coverage/main_py$character_factory.coverage" NAME="character_factory Coverage Results" MODIFIED="1752161715329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />

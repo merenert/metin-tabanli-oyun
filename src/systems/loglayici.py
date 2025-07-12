@@ -34,6 +34,12 @@ def sira_degisti_log(data):
     yeni = data["yeni"]
     tur = data["tur"]
     print(f"[Log] {onceki.isim} kişisinin sırası bitti, sıra {yeni.isim} kişisinde, tur: {tur} ")
+
+def bolge_degisti_log(data):
+    karakter = data["karakter"]
+    onceki = data["onceki"]
+    yeni = data["yeni"]
+    print(f"[Log] {karakter.isim} kişisi {onceki.isim} bolgesinden {yeni.isim} bolgesine geçti")
 def kaydol():
     event_bus.subscribe("karakter_olustu", karakter_olustu_log)
     event_bus.subscribe("esya_ekledi", esya_ekledi_log)
@@ -42,3 +48,4 @@ def kaydol():
     event_bus.subscribe("saldiri_yapildi", saldiri_yapildi_log)
     event_bus.subscribe("tur_basladi", tur_basladi_log)
     event_bus.subscribe("sira_degisti", sira_degisti_log)
+    event_bus.subscribe("bolge_degisti", bolge_degisti_log)

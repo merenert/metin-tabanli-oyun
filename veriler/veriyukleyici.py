@@ -1,6 +1,5 @@
 import yaml
 import os
-
 from core.enums import OyuncuSlotu
 from core.datatypes import RaceProto, ClassProto , ItemProto
 from typing import cast, Tuple
@@ -31,7 +30,7 @@ def load_races():
 
     return {
         key: RaceProto(
-            id=key,
+            race_id=key,
             can=veri["can"],
             base_zirh=veri["base_zirh"],
             base_saldiri_gucu=veri["base_saldiri_gucu"],
@@ -47,11 +46,25 @@ def load_classes():
 
     return {
         key: ClassProto(
-            id=key,
+            class_id=key,
             can=veri["can"],
             base_saldiri_gucu=veri["base_saldiri_gucu"],
             base_ceviklik=veri["base_ceviklik"],
             base_zirh=veri["base_zirh"],
         )
         for key, veri in rawclasses.items()
+    }
+def load_regions(yaml_dosyasi_yolu: str = "REGIONS.yaml") -> Dict[str, MapRegion]:
+    with open(os.path.join(BASE_DIR, yaml_dosyasi_yolu), encoding="utf-8") as f:
+        rawregions = yaml.safe_load(f)
+
+    return {
+        key: MapRegion(
+            id=key,
+            name=veri["isim"],
+            aciklama=veri["aciklama"],
+            komsular=veri.get("komsular", []),
+            npc_idleri=veri.get("npc_idleri", []),
+        )
+        for key, veri in rawregions.items()
     }
