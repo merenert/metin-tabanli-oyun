@@ -3,6 +3,11 @@ from typing import Dict, Optional , Self
 from core.enums import OyuncuSlotu
 from core.inventory import Envanter
 from core.datatypes import ItemProto
+from veriler import veriyukleyici
+from systems.character_factory import Karakterolusturucu
+ITEMS = veriyukleyici.load_items()
+
+
 @dataclass(slots=True)
 class Karakter:
     isim: str
@@ -11,7 +16,7 @@ class Karakter:
     irk: str
     base_zirh: int
     base_saldiri_gucu: int
-    ceviklik: int
+    base_ceviklik: int
     dominant_el: OyuncuSlotu
     envanter: Envanter = field(default_factory=Envanter)
     kusanilan: Dict[OyuncuSlotu, Optional[ItemProto]] = field(init=False)
@@ -22,6 +27,51 @@ class Karakter:
     @property
     def zirh(self):
         return self.base_zirh + sum(p.zirh_bonusu for p in self.kusanilan.values() if p)
+
+    def saldiri_gucu(self, el: OyuncuSlotu = None) -> int:
+        if el is None:
+            el = self.dominant_el
+        item = self.kusanilan.get(el)
+        if item is None:
+            return self.base_saldiri_gucu
+        return self.base_saldiri_gucu + item.hasar_bonusu
+
+    def ceviklik(self):
+        return self.base_ceviklik + sum(p.ceviklik_bonusu for p in self.kusanilan.values() if p)
+    def to_dict(self) -> dict:
+        return {
+            "isim": self.isim,
+            "irk": self.irk,
+            "sinif": self.sinif,
+            "can": self.can,
+            "envanter": self.envanter.inventory,
+            "kusanilan": {
+                slot: item.item_id
+                for slot, item in self.kusanilan.items()
+                if item is not None
+            }
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> Self:
+
+
+        isim = data["isim"]
+        irk = data["irk"]
+        sinif = data["sinif"]
+
+        karakter = Karakterolusturucu.karakterolustur(isim, irk, sinif)
+
+        karakter.can = data["can"]
+        karakter.envanter.inventory = data["envanter"]
+        karakter.envanter.sahip = karakter
+
+        karakter.kusanilan = {
+            slot: ITEMS[item_id]
+            for slot, item_id in data["kusanilan"].items()
+        }
+
+        return karakter
 
 def kusanma_kontrolu(self, item_id: str, slot: OyuncuSlotu | None = None) -> tuple[ItemProto, tuple[OyuncuSlotu, ...]]:
     try:
@@ -60,5 +110,9 @@ def kusan(self, item_id: str, slot: OyuncuSlotu | None = None):
 
     for s in actual_slots:
         self.kusanilan[s] = proto
-
+        event_bus.publish("esya_kusandi", {
+            "karakter": self,
+            "item_id": proto,
+            "el": s
+        })
     self.envanter.cikart(item_id, 1)

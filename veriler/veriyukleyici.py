@@ -13,7 +13,7 @@ def load_items():
 
     return {
         key: ItemProto(
-            id=key,
+            item_id=key,
             name=veri["name"],
             slots=cast(tuple[OyuncuSlotu, ...], (OyuncuSlotu[s] for s in veri["slots"])),
             cift_el_kullan=veri.get("cift_el_kullan", False),
@@ -35,7 +35,7 @@ def load_races():
             can=veri["can"],
             base_zirh=veri["base_zirh"],
             base_saldiri_gucu=veri["base_saldiri_gucu"],
-            ceviklik=veri["ceviklik"],
+            base_ceviklik=veri["base_ceviklik"],
             dominant_el = cast(OyuncuSlotu, OyuncuSlotu[veri["dominant_el"]]),
         )
         for key, veri in rawraces.items()
@@ -50,7 +50,7 @@ def load_classes():
             id=key,
             can=veri["can"],
             base_saldiri_gucu=veri["base_saldiri_gucu"],
-            ceviklik=veri["ceviklik"],
+            base_ceviklik=veri["base_ceviklik"],
             base_zirh=veri["base_zirh"],
         )
         for key, veri in rawclasses.items()

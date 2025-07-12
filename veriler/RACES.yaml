@@ -3,7 +3,7 @@
   can: 80
   base_zirh: 0
   base_saldiri_gucu: 20
-  ceviklik: 2
+  base_ceviklik: 2
   dominant_el: SOL_KOL
 
 "ork":
@@ -11,6 +11,6 @@
   can: 130
   base_zirh: 5
   base_saldiri_gucu: 15
-  ceviklik: -1
+  base_ceviklik: -1
   dominant_el: SAG_KOL
 

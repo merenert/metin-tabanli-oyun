@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f86d1c09-0316-41eb-916f-243620a1e43a" name="Changes" comment="_">
+      <change afterPath="$PROJECT_DIR$/tests/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/datatypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/datatypes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/inventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/savegame.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/savegame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/character.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/character.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/character_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/character_factory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/eventbus.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/eventbus.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/loglayici.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/loglayici.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/veriler/CLASSES.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/CLASSES.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/veriler/ITEMS.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/ITEMS.yaml" afterDir="false" />
@@ -61,6 +66,8 @@
     &quot;Python.inventory.executor&quot;: &quot;Run&quot;,
     &quot;Python.loglayici.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.savegame.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tests.executor&quot;: &quot;Run&quot;,
     &quot;Python.veriyukleyici.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -76,6 +83,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Meren\PycharmProjects\Metintabanlıoyun\tests" />
       <recent name="C:\Users\Meren\PycharmProjects\Metintabanlıoyun\src\systems" />
     </key>
   </component>
@@ -140,7 +148,10 @@
       <workItem from="1751876957719" duration="5251000" />
       <workItem from="1752070192380" duration="366000" />
       <workItem from="1752149747310" duration="3847000" />
-      <workItem from="1752160860683" duration="1260000" />
+      <workItem from="1752160860683" duration="2889000" />
+      <workItem from="1752231341325" duration="7486000" />
+      <workItem from="1752252110962" duration="1721000" />
+      <workItem from="1752313332959" duration="5503000" />
     </task>
     <task id="LOCAL-00001" summary="envanterden eşya kuşanmanın basit mantığı bitti">
       <option name="closed" value="true" />
@@ -190,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751877003120</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="_">
+      <option name="closed" value="true" />
+      <created>1752162241472</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1752162241472</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,15 +233,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="_" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1752162091198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$loglayici.coverage" NAME="loglayici Coverage Results" MODIFIED="1751799371255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1752319050378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$deneme.coverage" NAME="deneme Coverage Results" MODIFIED="1748097600751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$datatypes.coverage" NAME="datatypes Coverage Results" MODIFIED="1751799411558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/core" />
     <SUITE FILE_PATH="coverage/main_py$inventory.coverage" NAME="inventory Coverage Results" MODIFIED="1751799386488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/core" />
-    <SUITE FILE_PATH="coverage/main_py$veriyukleyici.coverage" NAME="veriyukleyici Coverage Results" MODIFIED="1752160838574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/veriler" />
-    <SUITE FILE_PATH="coverage/main_py$character.coverage" NAME="character Coverage Results" MODIFIED="1751799380017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />
     <SUITE FILE_PATH="coverage/main_py$character_factory.coverage" NAME="character_factory Coverage Results" MODIFIED="1752161715329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />
-    <SUITE FILE_PATH="coverage/Metintabanloyun$main.coverage" NAME="main Coverage Results" MODIFIED="1748020775141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$eventbus.coverage" NAME="eventbus Coverage Results" MODIFIED="1751799374062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />
+    <SUITE FILE_PATH="coverage/main_py$tests.coverage" NAME="tests Coverage Results" MODIFIED="1752234061205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/main_py$loglayici.coverage" NAME="loglayici Coverage Results" MODIFIED="1752231683814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />
+    <SUITE FILE_PATH="coverage/main_py$datatypes.coverage" NAME="datatypes Coverage Results" MODIFIED="1751799411558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/core" />
+    <SUITE FILE_PATH="coverage/main_py$veriyukleyici.coverage" NAME="veriyukleyici Coverage Results" MODIFIED="1752160838574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/veriler" />
+    <SUITE FILE_PATH="coverage/main_py$savegame.coverage" NAME="savegame Coverage Results" MODIFIED="1752246652106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/core" />
+    <SUITE FILE_PATH="coverage/main_py$character.coverage" NAME="character Coverage Results" MODIFIED="1752319035191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems" />
+    <SUITE FILE_PATH="coverage/Metintabanloyun$main.coverage" NAME="main Coverage Results" MODIFIED="1748020775141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

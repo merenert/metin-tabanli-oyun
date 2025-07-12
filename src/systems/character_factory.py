@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Dict, Optional , Self
 from core.enums import OyuncuSlotu
-from systems.character import Karakter
 from veriler import veriyukleyici
 from systems.eventbus import EventBus, event_bus
 
@@ -10,9 +9,11 @@ CLASSES = veriyukleyici.load_classes()
 
 
 class Karakterolusturucu:
+
     @staticmethod
     def karakterolustur(name: str, race_id: str, class_id: str,
-                        hand: OyuncuSlotu | None = None) -> Karakter:
+                        hand: OyuncuSlotu | None = None) -> "Karakter":
+        from systems.character import Karakter
         try:
             race = RACES[race_id]
         except KeyError:
@@ -37,6 +38,6 @@ class Karakterolusturucu:
             can=race.can + klass.can,
             base_zirh=race.base_zirh,
             base_saldiri_gucu=race.base_saldiri_gucu + klass.base_saldiri_gucu,
-            ceviklik=race.ceviklik + klass.ceviklik,
+            base_ceviklik=race.base_ceviklik + klass.base_ceviklik,
             dominant_el=dom,
         )
