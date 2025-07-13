@@ -1,0 +1,11 @@
+orman:
+  isim: "Karanlık Orman"
+  komsular: [koy]
+  npc_idleri: []
+  map_turu: ["ORMAN"]
+
+orman_koyu:
+  isim: "Sisli Köy"
+  komsular: [orman]
+  npc_idleri: []
+  map_turu: ["ORMAN", "KOY"]

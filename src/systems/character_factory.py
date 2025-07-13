@@ -3,15 +3,14 @@ from typing import Dict, Optional , Self
 from core.enums import OyuncuSlotu
 from veriler import veriyukleyici
 from systems.eventbus import EventBus, event_bus
+from veriler.data_repo import RACES,CLASSES
 
-RACES = veriyukleyici.load_races()
-CLASSES = veriyukleyici.load_classes()
 
 
 class Karakterolusturucu:
 
     @staticmethod
-    def karakterolustur(name: str, race_id: str, class_id: str,
+    def karakterolustur(name: str, race_id: str, class_id: str,bulundugu_bolge:str,
                         hand: OyuncuSlotu | None = None) -> "Karakter":
         from systems.character import Karakter
         try:
@@ -39,5 +38,7 @@ class Karakterolusturucu:
             base_zirh=race.base_zirh,
             base_saldiri_gucu=race.base_saldiri_gucu + klass.base_saldiri_gucu,
             base_ceviklik=race.base_ceviklik + klass.base_ceviklik,
-            dominant_el=dom,
+            bulundugu_bolge=bulundugu_bolge,
+            dominant_el=dom
+
         )

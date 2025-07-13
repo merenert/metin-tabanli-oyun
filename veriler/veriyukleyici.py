@@ -1,8 +1,9 @@
 import yaml
 import os
-from core.enums import OyuncuSlotu
+from core.enums import OyuncuSlotu,MapTuru
 from core.datatypes import RaceProto, ClassProto , ItemProto
 from typing import cast, Tuple
+from core.datatypes import MapRegion
 
 BASE_DIR = os.path.dirname(__file__)
 
@@ -54,17 +55,17 @@ def load_classes():
         )
         for key, veri in rawclasses.items()
     }
-def load_regions(yaml_dosyasi_yolu: str = "REGIONS.yaml") -> Dict[str, MapRegion]:
+def load_regions(yaml_dosyasi_yolu: str = "REGIONS.yaml") -> dict[str, MapRegion]:
     with open(os.path.join(BASE_DIR, yaml_dosyasi_yolu), encoding="utf-8") as f:
         rawregions = yaml.safe_load(f)
 
     return {
         key: MapRegion(
-            id=key,
+            region_id=key,
             name=veri["isim"],
-            aciklama=veri["aciklama"],
             komsular=veri.get("komsular", []),
             npc_idleri=veri.get("npc_idleri", []),
+            map_turu=MapTuru(0) | sum((MapTuru[t] for t in veri.get("tur", [])), MapTuru(0)) ###
         )
         for key, veri in rawregions.items()
     }

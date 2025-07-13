@@ -1,4 +1,4 @@
-from enum import Enum, auto
+from enum import Enum,Flag, auto
 
 class OyuncuSlotu(Enum):
     SOL_KOL = auto()
@@ -6,3 +6,9 @@ class OyuncuSlotu(Enum):
     GOVDEZIRHI = auto()
     KOLLUK = auto()
     AYAKKABI = auto()
+
+class MapTuru(Flag):
+    ORMAN = auto()
+    KOY = auto()
+    ZINDAN = auto()
+    SEHIR = auto()

@@ -1,6 +1,6 @@
 from core.enums import OyuncuSlotu
 from systems.eventbus import event_bus
-
+from core.protocols import HasCombatStats
 
 
 class CombatSystem:
@@ -8,11 +8,11 @@ class CombatSystem:
         pass
 
     @staticmethod
-    def hasar_hesapla(hedef, gelen_hasar: int) -> int:
+    def hasar_hesapla(hedef: HasCombatStats, gelen_hasar: int) -> int:
         net_hasar = max(0, gelen_hasar - hedef.zirh)
         return net_hasar
 
-    def saldir(self, saldiran, hedef, el):
+    def saldir(self, saldiran:HasCombatStats, hedef:HasCombatStats, el):
         from systems.character import Karakter
         saldiri_gucu = saldiran.saldiri_gucu(el)
         net_hasar = self.hasar_hesapla(hedef, saldiri_gucu)

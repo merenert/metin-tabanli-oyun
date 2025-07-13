@@ -6,8 +6,8 @@ from veriler import veriyukleyici
 from systems.turnmanager import TurnManager
 def test_save_load():
     # 1. İki karakter oluştur
-    karakter1 = Karakterolusturucu.karakterolustur("Eldor", "elf", "okcu")
-    karakter2 = Karakterolusturucu.karakterolustur("Balin", "ork", "okcu")
+    karakter1 = Karakterolusturucu.karakterolustur("Eldor", "elf", "okcu","orman_koyu")
+    karakter2 = Karakterolusturucu.karakterolustur("Balin", "ork", "okcu","orman_koyu")
 
     # 2. Karakterleri kaydet
     savegame.save(karakter1, "karakter1.json")
@@ -54,8 +54,20 @@ def test_combat():
         # Tur ve sıra güncelle
         turn_manager.sonraki()
 
+def test_map_system():
+    regions = veriyukleyici.load_regions()
+    karakter1 = savegame.load("karakter1.json")
+    karakter2 = savegame.load("karakter2.json")# örnek
+    karakter1.bulundugu_bolge = "orman_koyu"
+    print(f"Başlangıç: {karakter1.bulundugu_bolge}")
+    karakter1.bolge_degistir("orman", regions)
+    print(f"Yeni konum: {karakter1.bulundugu_bolge}")
+    savegame.save(karakter1, "karakter1.json")
+    savegame.save(karakter2, "karakter2.json")
+
+
 
 if __name__ == "__main__":
-    test_combat()
+    test_map_system()
 
 

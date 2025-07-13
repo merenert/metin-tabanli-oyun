@@ -3,11 +3,11 @@ from typing import Dict, Optional , Self
 from core.enums import OyuncuSlotu
 from core.inventory import Envanter
 from systems.eventbus import event_bus
-from core.datatypes import ItemProto
+from core.datatypes import ItemProto,MapRegion
 from veriler import veriyukleyici
 from systems.character_factory import Karakterolusturucu
 from systems.combat import CombatSystem
-ITEMS = veriyukleyici.load_items()
+from veriler.data_repo import ITEMS
 
 
 #====class tanımı====
@@ -56,9 +56,10 @@ class Karakter:
             "sinif": self.sinif,
             "can": self.can,
             "envanter": self.envanter.inventory,
+            "bulundugu_bolge": self.bulundugu_bolge,
             "kusanilan": {
-                slot.name: item.item_id
-                for slot, item in self.kusanilan.items()
+                s: item.item_id
+                for s, item in self.kusanilan.items()
                 if item is not None
             }
         }
@@ -67,8 +68,9 @@ class Karakter:
         isim = data["isim"]
         irk = data["irk"]
         sinif = data["sinif"]
+        bulundugu_bolge = data.get("bulundugu_bolge","orman_koyu")
 
-        karakter = Karakterolusturucu.karakterolustur(isim, irk, sinif)
+        karakter = Karakterolusturucu.karakterolustur(isim, irk, sinif,bulundugu_bolge)
 
         karakter.can = data["can"]
         karakter.envanter.inventory = data["envanter"]
@@ -125,11 +127,11 @@ class Karakter:
         self.envanter.cikart(item_id, 1)
 
     def bolge_degistir(self, yeni_bolge: str, regions: dict[str, MapRegion]) -> bool:
-        mevcut = regions[self.bulundugu_bolge_id]
+        mevcut = regions[self.bulundugu_bolge]
         if yeni_bolge not in mevcut.komsular:
             return False
 
-        onceki = self.bulundugu_bolge_id
+        onceki = self.bulundugu_bolge
         self.bulundugu_bolge = yeni_bolge
 
         event_bus.publish("bolge_degisti", {

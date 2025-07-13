@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
-from core.enums import OyuncuSlotu
+from core.enums import OyuncuSlotu, MapTuru
+
+
 @dataclass(frozen=True, slots=True)
 class RaceProto:
     race_id: str
@@ -35,3 +37,4 @@ class MapRegion:
     name: str
     komsular:list[str]
     npc_idleri:list[str]
+    map_turu: MapTuru
