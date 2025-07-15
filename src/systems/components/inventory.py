@@ -1,7 +1,7 @@
 from typing import Dict, Optional , Self
 from systems.eventbus import event_bus
 
-class Envanter:
+class InventoryComponent:
     def __init__(self, sahip = None):
         self.inventory: dict[str,int]= {}
         self.sahip = sahip
@@ -32,3 +32,13 @@ class Envanter:
 
     def list_idleri(self) -> list[str]:
         return list(self.inventory.keys())
+
+
+    def to_dict(self) -> dict:
+        return self.inventory.copy()
+
+    @classmethod
+    def from_dict(cls, sahip, data: dict):
+        inv = cls(sahip)
+        inv.inventory = data.copy()
+        return inv

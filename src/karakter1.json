@@ -2,10 +2,25 @@
   "isim": "Eldor",
   "irk": "elf",
   "sinif": "okcu",
-  "can": 80,
+  "stats": {
+    "can": 80,
+    "base_zirh": 3,
+    "base_saldiri_gucu": 28,
+    "base_ceviklik": 17,
+    "dominant_el": "SAG_KOL"
+  },
+  "ekipman": {
+    "dominant_el": "SAG_KOL",
+    "kusanilan": {
+      "SOL_KOL": null,
+      "SAG_KOL": null,
+      "GOVDEZIRHI": null,
+      "KOLLUK": null,
+      "AYAKKABI": null
+    }
+  },
   "envanter": {},
-  "bulundugu_bolge": "orman",
-  "kusanilan": {
-    "SAG_KOL": "iron sword"
+  "konum": {
+    "bulundugu_bolge": "orman_koyu"
   }
 }

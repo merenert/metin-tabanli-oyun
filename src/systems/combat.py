@@ -1,4 +1,4 @@
-from core.enums import OyuncuSlotu
+
 from systems.eventbus import event_bus
 from core.protocols import HasCombatStats
 
@@ -13,7 +13,6 @@ class CombatSystem:
         return net_hasar
 
     def saldir(self, saldiran:HasCombatStats, hedef:HasCombatStats, el):
-        from systems.character import Karakter
         saldiri_gucu = saldiran.saldiri_gucu(el)
         net_hasar = self.hasar_hesapla(hedef, saldiri_gucu)
         hedef.can -= net_hasar

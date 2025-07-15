@@ -1,9 +1,0 @@
-orman:
-  isim: "Karanlık Orman"
-  komsular: [koy]
-  npc_idleri: [aykut, goblin_kral]
-
-koy:
-  isim: "Yalnız Köy"
-  komsular: [orman]
-  npc_idleri: [demirci]
