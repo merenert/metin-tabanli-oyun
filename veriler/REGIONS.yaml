@@ -1,11 +1,34 @@
-orman:
+Karanlık Orman:
   isim: "Karanlık Orman"
-  komsular: [koy]
+  komsular: ["Sisli Koy"]
   npc_idleri: []
   map_turu: ["ORMAN"]
-
-orman_koyu:
+Sisli Koy:
   isim: "Sisli Köy"
-  komsular: [orman]
+  komsular: ["Karanlık Orman"]
   npc_idleri: []
   map_turu: ["ORMAN", "KOY"]
+
+Karagac Zindani:
+  isim: "Karagac Zindanı"
+  komsular: [ORMAN]
+  npc_idleri: []
+  map_turu: ["ZINDAN"]
+
+Altin Sehir:
+  isim: "Altın Şehir"
+  komsular: [KOY, ORMAN]
+  npc_idleri: []
+  map_turu: ["SEHIR"]
+
+Sisli Tepeler:
+  isim: "Sisli Tepeler"
+  komsular: [SEHIR, ZINDAN]
+  npc_idleri: []
+  map_turu: ["ORMAN"]
+  
+Sehir-Orman Geçidi:
+  isim: "Şehir-Orman Geçidi"
+  komsular: [SEHIR, ORMAN]
+  npc_idleri: []
+  map_turu: ["SEHIR", "ORMAN"]

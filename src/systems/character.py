@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
-from typing import Self
+from typing import Self,cast
+from core.entity import Entity
 from core.enums import OyuncuSlotu
 from systems.eventbus import event_bus
 from core.datatypes import MapRegion
@@ -7,18 +8,17 @@ from systems.components.equipment import EquipmentComponent
 from systems.components.stats import StatsComponent
 from systems.components.inventory import InventoryComponent
 from systems.components.location import LocationComponent
+from systems.components.attributes import AttributeComponent
+from core.entity import Entity
 # ====class tanımı====
-@dataclass(slots=True)
-class Karakter:
-    isim: str
-    irk: str
-    sinif: str
 
-    stats: StatsComponent = field(init=False)
-    ekipman: EquipmentComponent = field(init=False)
-    envanter: InventoryComponent = field(init=False)
-    konum: LocationComponent = field(init=False)
-
+class Karakter(Entity):
+    def __init__(self, isim, irk, sinif, dominant_el: OyuncuSlotu):
+        super().__init__()
+        self.dominant_el = dominant_el
+        self.isim = isim
+        self.irk = irk
+        self.sinif = sinif
 
     # Artık __post_init__ gerekmez
     def to_dict(self) -> dict:
@@ -26,10 +26,11 @@ class Karakter:
             "isim": self.isim,
             "irk": self.irk,
             "sinif": self.sinif,
-            "stats": self.stats.to_dict(),
-            "ekipman": self.ekipman.to_dict(),
-            "envanter": self.envanter.to_dict(),
-            "konum": self.konum.to_dict()
+            "dominant_el": self.dominant_el.name,
+            "envanter": (self.al(InventoryComponent).to_dict()),
+            "ekipman": (self.al(EquipmentComponent).to_dict()),
+            "nitelikler": (self.al(AttributeComponent).to_dict()),
+            "konum": (self.al(LocationComponent).to_dict())
         }
 
     @classmethod
@@ -37,19 +38,20 @@ class Karakter:
         isim = data["isim"]
         irk = data["irk"]
         sinif = data["sinif"]
+        dominant_el = OyuncuSlotu[data["dominant_el"]]
 
-        # stats içinden dominant_el çekilecek
-        dominant_el = OyuncuSlotu[data["stats"]["dominant_el"]]
+        karakter = cls(isim, irk, sinif, cast(OyuncuSlotu, dominant_el))
 
-        # nesneyi oluştur (bileşensiz)
-        karakter = cls(isim, irk, sinif,)
-
-        # bileşenleri sırayla kur
-        karakter.stats = StatsComponent.from_dict(karakter, data["stats"])
-        karakter.ekipman = EquipmentComponent.from_dict(karakter, data["ekipman"])
-        karakter.envanter = InventoryComponent.from_dict(karakter, data.get("envanter", {}))
-        karakter.konum = LocationComponent.from_dict(karakter, data.get("konum", {}))
-
+        # Componentleri dict'ten oluşturup ekle
+        karakter.ekle(EquipmentComponent.from_dict(karakter, data.get("ekipman", {})))
+        karakter.ekle(InventoryComponent.from_dict(karakter, data.get("envanter", {})))
+        karakter.ekle(LocationComponent.from_dict(karakter, data.get("konum", {})))
+        karakter.ekle(AttributeComponent.from_dict(karakter, data.get("nitelikler", {})))
+        karakter.ekle(StatsComponent.from_dict(
+            sahip=karakter,
+            attribute_component=karakter.al(AttributeComponent),
+            data=data.get("stats", {})
+        ))
         return karakter
 
 

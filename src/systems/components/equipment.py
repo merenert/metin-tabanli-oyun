@@ -3,25 +3,25 @@ from core.datatypes import ItemProto
 from veriler.data_repo import ITEMS
 from systems.eventbus import event_bus
 from typing import cast
+from systems.components.inventory import InventoryComponent
+
 
 class EquipmentComponent:
-    def __init__(self, sahip, dominant_el: OyuncuSlotu):
+    def __init__(self, sahip):
         self.sahip = sahip
         self.kusanilan: dict[OyuncuSlotu, ItemProto | None] = {
             slot: None for slot in OyuncuSlotu
         }
-        self.dominant_el = dominant_el
-
-
     # ====envanterden eşya kuşanma====
     def kusanma_kontrolu(self, item_id: str, slot: OyuncuSlotu | None = None) -> tuple[
         ItemProto, tuple[OyuncuSlotu, ...]]:
+        envanter = self.sahip.al(InventoryComponent)
         try:
             proto = ITEMS[item_id]
         except KeyError:
             raise ValueError(f"Geçersiz item id: {item_id}") from None
 
-        if self.sahip.envanter.miktar(item_id) < 1:
+        if envanter.miktar(item_id) < 1:
             raise ValueError("Envanterde bu eşyadan yok")
 
         if len(proto.slots) > 1 and proto.cift_el_kullan and slot is not None:
@@ -34,7 +34,7 @@ class EquipmentComponent:
         if len(proto.slots) > 1 and proto.cift_el_kullan:
             actual_slots = proto.slots
         else:
-            chosen = slot or self.dominant_el
+            chosen = slot or self.sahip.dominant_el
             if chosen not in proto.slots:
                 raise ValueError("Dominant el bu eşyayla uyuşmuyor")
             actual_slots = (chosen,)
@@ -48,20 +48,21 @@ class EquipmentComponent:
 
     def kusan(self, item_id: str, slot: OyuncuSlotu | None = None):
         proto, actual_slots = self.kusanma_kontrolu(item_id, slot)
+        envanter = self.sahip.al(InventoryComponent)
 
         for s in actual_slots:
             self.kusanilan[s] = proto
+            
             event_bus.publish("esya_kusandi", {
                 "karakter": self,
                 "item_id": proto,
                 "el": s
             })
-        self.sahip.envanter.cikart(item_id, 1)
+        envanter.cikart(item_id, 1)
 
     def to_dict(self) -> dict:
         # Slotlar enum olduğu için isimleri ile kaydediyoruz
         return {
-            "dominant_el": self.dominant_el.name,
             "kusanilan": {
                 slot.name: item.item_id if item else None
                 for slot, item in self.kusanilan.items()
@@ -70,8 +71,7 @@ class EquipmentComponent:
 
     @classmethod
     def from_dict(cls, sahip, data: dict):
-        dominant_el = OyuncuSlotu[data.get("dominant_el")]  # varsayılan
-        ekipman = cls(sahip, cast(OyuncuSlotu,dominant_el))
+        ekipman = cls(sahip)
         kusanilan_data = data.get("kusanilan", {})
         for slot_name, item_id in kusanilan_data.items():
             slot = OyuncuSlotu[slot_name]

@@ -5,19 +5,19 @@ from core.enums import OyuncuSlotu, MapTuru
 @dataclass(frozen=True, slots=True)
 class RaceProto:
     race_id: str
-    can: int
-    base_zirh: int
-    base_saldiri_gucu: int
-    base_ceviklik: int
+    guc: float
+    zeka: float
+    ceviklik: float
+    dayaniklilik: float
     dominant_el: OyuncuSlotu
 
 @dataclass(frozen=True, slots=True)
 class ClassProto:
     class_id: str
-    can: int
-    base_saldiri_gucu: int
-    base_ceviklik: int
-    base_zirh: int
+    guc: float = 0.0
+    zeka: float = 0.0
+    ceviklik: float = 0.0
+    dayaniklilik: float = 0.0
 
 #Ekipman sınıfı
 @dataclass(frozen=True, slots=True)
@@ -30,6 +30,7 @@ class ItemProto:
     hasar_bonusu: int = 0
     engelleme: int = 0
     ceviklik_bonusu: int = 0
+    agirlik: float = 0.0
 
 @dataclass(frozen=True)
 class MapRegion:

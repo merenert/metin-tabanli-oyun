@@ -1,4 +1,4 @@
-
+from core.enums import OyuncuSlotu
 from systems.eventbus import event_bus
 from core.protocols import HasCombatStats
 

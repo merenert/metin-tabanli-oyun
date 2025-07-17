@@ -10,6 +10,7 @@ class InventoryComponent:
         if adet <= 0:
             raise ValueError("adet pozitif olmalı")
         self.inventory[item_id] = self.inventory.get(item_id, 0) + adet
+
         event_bus.publish("esya_ekledi", {"karakter": self.sahip, "item_id": item_id})
 
     def cikart(self,item_id: str, adet: int = 1):
@@ -26,6 +27,7 @@ class InventoryComponent:
             self.inventory[item_id] = kalan
         else:
             self.inventory.pop(item_id)
+
         event_bus.publish("esya_cikardi", {"karakter": self.sahip, "item_id": item_id})
     def miktar(self, item_id: str) -> int:
         return self.inventory.get(item_id, 0)

@@ -4,6 +4,7 @@
   cift_el_kullan: false
   hasar_bonusu: 5
   engelleme: 1
+  agirlik: 1.5
 
 "wood shield":
   name: "wood_shield"
@@ -11,24 +12,29 @@
   cift_el_kullan: false
   zirh_bonusu: 2
   engelleme: 3
+  agirlik: 4.5
 
 "leather boots":
   name: "leather_boots"
   slots: [AYAKKABI,]
   zirh_bonusu: 3
   ceviklik_bonusu: 1
+  agirlik: 1.2
 
 "longbow":
   name: "longbow"
   slots: [SAG_KOL, SOL_KOL,]
   cift_el_kullan: true
   hasar_bonusu: 8
+  agirlik: 1.0
 
 "chainmail_armor":
   name: "chainmail_armor"
   slots: [GOVDEZIRHI,]
   zirh_bonusu: 6
   ceviklik_bonusu: -2
+  agirlik: 13.5
+
 
 "dagger":
   name: "dagger"
@@ -36,12 +42,13 @@
   cift_el_kullan: false
   hasar_bonusu: 3
   ceviklik_bonusu: 2
+  agirlik: 0.6
 
 "plate_gauntlets":
   name: "plate_gauntlets"
   slots: [KOLLUK,]
   zirh_bonusu: 5
-  hasar_bonusu: 1
+  agirlik: 2.0
 
 "great_axe":
   name: "great_axe"
@@ -49,3 +56,4 @@
   cift_el_kullan: true
   hasar_bonusu: 12
   engelleme: -2
+  agirlik: 4.0

@@ -4,6 +4,7 @@ from core.datatypes import ItemProto
 from systems.components.equipment import EquipmentComponent
 from systems.components.inventory import InventoryComponent
 from systems.components.location import LocationComponent
+from systems.components.attributes import AttributeComponent
 
 class HasCombatStats(Protocol):
     can: int
@@ -25,3 +26,6 @@ class HasInventoryComponent(Protocol):
 
 class HasLocationComponent(Protocol):
     konum: LocationComponent
+
+class HasAttributes(Protocol):
+    nitelikler: AttributeComponent

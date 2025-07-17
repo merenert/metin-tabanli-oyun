@@ -4,22 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f86d1c09-0316-41eb-916f-243620a1e43a" name="Changes" comment="_">
-      <change afterPath="$PROJECT_DIR$/src/systems/components/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/systems/components/equipment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/systems/components/location.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/systems/components/stats.py" afterDir="false" />
+    <list default="true" id="f86d1c09-0316-41eb-916f-243620a1e43a" name="Changes" comment="component">
+      <change afterPath="$PROJECT_DIR$/src/core/entity.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/systems/components/attributes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/components/inventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/datatypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/datatypes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/protocols.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/protocols.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/karakter1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/karakter1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/karakter2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/karakter2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/karakter1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/karakter2.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/character.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/character.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/character_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/character_factory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/combat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/combat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/veriler/REGİONS.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/veriler/data_repo.py" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/data_repo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/components/equipment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/components/equipment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/components/inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/components/inventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/components/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/components/stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/eventbus.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/eventbus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/CLASSES.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/CLASSES.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/ITEMS.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/ITEMS.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/RACES.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/RACES.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/REGIONS.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/REGIONS.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/veriler/veriyukleyici.py" beforeDir="false" afterPath="$PROJECT_DIR$/veriler/veriyukleyici.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,35 +62,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.character.executor": "Debug",
-    "Python.character_factory.executor": "Run",
-    "Python.combat.executor": "Run",
-    "Python.data_repo.executor": "Run",
-    "Python.datatypes.executor": "Run",
-    "Python.deneme.executor": "Run",
-    "Python.eventbus.executor": "Run",
-    "Python.inventory.executor": "Run",
-    "Python.loglayici.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.savegame.executor": "Run",
-    "Python.stats.executor": "Run",
-    "Python.tests.executor": "Run",
-    "Python.veriyukleyici.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Meren/PycharmProjects/Metintabanlıoyun",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.character.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.character_factory.executor&quot;: &quot;Run&quot;,
+    &quot;Python.combat.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_repo.executor&quot;: &quot;Run&quot;,
+    &quot;Python.datatypes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.deneme.executor&quot;: &quot;Run&quot;,
+    &quot;Python.eventbus.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inventory.executor&quot;: &quot;Run&quot;,
+    &quot;Python.loglayici.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.savegame.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stats.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.veriyukleyici.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Meren/PycharmProjects/Metintabanlıoyun&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Meren\PycharmProjects\Metintabanlıoyun\src\systems\components" />
@@ -198,7 +203,11 @@
       <workItem from="1752411335623" duration="1008000" />
       <workItem from="1752415276295" duration="1454000" />
       <workItem from="1752487767942" duration="6786000" />
-      <workItem from="1752527469730" duration="11155000" />
+      <workItem from="1752527469730" duration="11468000" />
+      <workItem from="1752614110731" duration="2818000" />
+      <workItem from="1752618871452" duration="2019000" />
+      <workItem from="1752662126796" duration="10569000" />
+      <workItem from="1752679964616" duration="13486000" />
     </task>
     <task id="LOCAL-00001" summary="envanterden eşya kuşanmanın basit mantığı bitti">
       <option name="closed" value="true" />
@@ -288,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752407667035</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="component">
+      <option name="closed" value="true" />
+      <created>1752578902682</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1752578902682</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,11 +328,12 @@
     <MESSAGE value="turn manager temelleri ve testleri tamamlandı" />
     <MESSAGE value="map temel mantık" />
     <MESSAGE value="_" />
-    <option name="LAST_COMMIT_MESSAGE" value="_" />
+    <MESSAGE value="component" />
+    <option name="LAST_COMMIT_MESSAGE" value="component" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$stats.coverage" NAME="stats Coverage Results" MODIFIED="1752492937554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/systems/components" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1752578582663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1752702933289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$deneme.coverage" NAME="deneme Coverage Results" MODIFIED="1748097600751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$inventory.coverage" NAME="inventory Coverage Results" MODIFIED="1751799386488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/core" />
     <SUITE FILE_PATH="coverage/main_py$data_repo.coverage" NAME="data_repo Coverage Results" MODIFIED="1752410529193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/veriler" />

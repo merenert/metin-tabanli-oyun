@@ -32,10 +32,10 @@ def load_races():
     return {
         key: RaceProto(
             race_id=key,
-            can=veri["can"],
-            base_zirh=veri["base_zirh"],
-            base_saldiri_gucu=veri["base_saldiri_gucu"],
-            base_ceviklik=veri["base_ceviklik"],
+            guc=veri["guc"],
+            dayaniklilik=veri["dayaniklilik"],
+            ceviklik=veri["ceviklik"],
+            zeka=veri["zeka"],
             dominant_el = cast(OyuncuSlotu, OyuncuSlotu[veri["dominant_el"]]),
         )
         for key, veri in rawraces.items()
@@ -48,10 +48,10 @@ def load_classes():
     return {
         key: ClassProto(
             class_id=key,
-            can=veri["can"],
-            base_saldiri_gucu=veri["base_saldiri_gucu"],
-            base_ceviklik=veri["base_ceviklik"],
-            base_zirh=veri["base_zirh"],
+            guc=veri["guc"],
+            dayaniklilik=veri["dayaniklilik"],
+            ceviklik=veri["ceviklik"],
+            zeka=veri["zeka"],
         )
         for key, veri in rawclasses.items()
     }
