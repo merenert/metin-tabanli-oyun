@@ -1,0 +1,25 @@
+{
+  "isim": "Balin",
+  "irk": "ork",
+  "sinif": "okcu",
+  "dominant_el": "SAG_KOL",
+  "envanter": {},
+  "ekipman": {
+    "kusanilan": {
+      "SOL_KOL": null,
+      "SAG_KOL": null,
+      "GOVDEZIRHI": null,
+      "KOLLUK": null,
+      "AYAKKABI": null
+    }
+  },
+  "nitelikler": {
+    "guc": 12.0,
+    "zeka": 7.0,
+    "ceviklik": 8.0,
+    "dayaniklilik": 10.0
+  },
+  "konum": {
+    "bulundugu_bolge": "Sisli Koy"
+  }
+}

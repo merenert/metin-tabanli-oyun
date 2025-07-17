@@ -1,0 +1,25 @@
+{
+  "isim": "Eldor",
+  "irk": "elf",
+  "sinif": "okcu",
+  "dominant_el": "SAG_KOL",
+  "envanter": {},
+  "ekipman": {
+    "kusanilan": {
+      "SOL_KOL": null,
+      "SAG_KOL": null,
+      "GOVDEZIRHI": null,
+      "KOLLUK": null,
+      "AYAKKABI": null
+    }
+  },
+  "nitelikler": {
+    "guc": 5.5,
+    "zeka": 12.0,
+    "ceviklik": 18.0,
+    "dayaniklilik": 3.0
+  },
+  "konum": {
+    "bulundugu_bolge": "Sisli Koy"
+  }
+}
