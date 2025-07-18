@@ -7,7 +7,7 @@ class RaceProto:
     race_id: str
     guc: float
     zeka: float
-    ceviklik: float
+    hiz: float
     dayaniklilik: float
     dominant_el: OyuncuSlotu
 
@@ -16,7 +16,7 @@ class ClassProto:
     class_id: str
     guc: float = 0.0
     zeka: float = 0.0
-    ceviklik: float = 0.0
+    hiz: float = 0.0
     dayaniklilik: float = 0.0
 
 #Ekipman sınıfı

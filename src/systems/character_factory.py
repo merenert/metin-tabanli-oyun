@@ -7,6 +7,7 @@ from systems.components.stats import StatsComponent
 from systems.components.inventory import InventoryComponent
 from systems.components.location import LocationComponent
 from systems.components.attributes import AttributeComponent
+from systems.components.weight import WeightComponent
 
 
 class Karakterolusturucu:
@@ -33,7 +34,7 @@ class Karakterolusturucu:
 
         # --- 2. Nitelikleri topla
         attributes = {}
-        for attr in ["guc", "zeka", "ceviklik", "dayaniklilik"]:
+        for attr in ["guc", "zeka", "hiz", "dayaniklilik"]:
             attributes[attr] = float(getattr(race, attr, 0) + getattr(klass, attr, 0))
 
         dom = hand or race.dominant_el
@@ -53,6 +54,7 @@ class Karakterolusturucu:
         karakter.ekle(EquipmentComponent(karakter))
         karakter.ekle(InventoryComponent(karakter))
         karakter.ekle(LocationComponent(karakter, baslangic_bolge))
+        karakter.ekle(WeightComponent(karakter))
 
         # --- 5. Olay yayını
         event_bus.publish("karakter_olustu", {

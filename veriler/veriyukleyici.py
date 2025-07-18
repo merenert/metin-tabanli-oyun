@@ -19,7 +19,9 @@ def load_items():
             cift_el_kullan=veri.get("cift_el_kullan", False),
             zirh_bonusu=veri.get("zirh_bonusu", 0),
             hasar_bonusu=veri.get("hasar_bonusu", 0),
+            ceviklik_bonusu=veri.get("ceviklik_bonusu", 0),
             engelleme=veri.get("engelleme", 0),
+            agirlik=veri.get("agirlik", 0)
         )
         for key, veri in rawitems.items()
     }
@@ -34,7 +36,7 @@ def load_races():
             race_id=key,
             guc=veri["guc"],
             dayaniklilik=veri["dayaniklilik"],
-            ceviklik=veri["ceviklik"],
+            hiz=veri["hiz"],
             zeka=veri["zeka"],
             dominant_el = cast(OyuncuSlotu, OyuncuSlotu[veri["dominant_el"]]),
         )
@@ -50,7 +52,7 @@ def load_classes():
             class_id=key,
             guc=veri["guc"],
             dayaniklilik=veri["dayaniklilik"],
-            ceviklik=veri["ceviklik"],
+            hiz=veri["hiz"],
             zeka=veri["zeka"],
         )
         for key, veri in rawclasses.items()

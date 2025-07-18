@@ -3,7 +3,7 @@ insan:
   race_id: "insan"
   guc: 5.0
   zeka: 5.0
-  ceviklik: 8.0
+  hiz: 8.0
   dayaniklilik: 5.0
   dominant_el: SAG_KOL
 
@@ -11,7 +11,7 @@ elf:
   race_id: "elf"
   guc: 3.5
   zeka: 7.0
-  ceviklik: 15.0
+  hiz: 15.0
   dayaniklilik: 3.0
   dominant_el: SOL_KOL
 
@@ -19,7 +19,7 @@ cuce:
   race_id: "cuce"
   guc: 8.0
   zeka: 3.0
-  ceviklik: 4.0
+  hiz: 4.0
   dayaniklilik: 10.0
   dominant_el: SAG_KOL
 
@@ -27,6 +27,6 @@ ork:
   race_id: "ork"
   guc: 10.0
   zeka: 2.0
-  ceviklik: 5.0
+  hiz: 5.0
   dayaniklilik: 10.0
   dominant_el: SAG_KOL

@@ -9,6 +9,7 @@ from systems.components.stats import StatsComponent
 from systems.components.inventory import InventoryComponent
 from systems.components.location import LocationComponent
 from systems.components.attributes import AttributeComponent
+from systems.components.weight import WeightComponent
 from core.entity import Entity
 # ====class tanımı====
 
@@ -30,7 +31,9 @@ class Karakter(Entity):
             "envanter": (self.al(InventoryComponent).to_dict()),
             "ekipman": (self.al(EquipmentComponent).to_dict()),
             "nitelikler": (self.al(AttributeComponent).to_dict()),
-            "konum": (self.al(LocationComponent).to_dict())
+            "stats": (self.al(StatsComponent).to_dict()),
+            "konum": (self.al(LocationComponent).to_dict()),
+            "agirlik": (self.al(WeightComponent)).to_dict(),
         }
 
     @classmethod
@@ -52,6 +55,7 @@ class Karakter(Entity):
             attribute_component=karakter.al(AttributeComponent),
             data=data.get("stats", {})
         ))
+        karakter.ekle(WeightComponent(karakter))
         return karakter
 
 

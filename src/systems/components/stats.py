@@ -4,7 +4,8 @@ from typing import cast
 from core.enums import OyuncuSlotu
 from systems.components.attributes import AttributeComponent
 from systems.components.equipment import EquipmentComponent
-from core.datatypes import ItemProto  # Item türü için
+from core.datatypes import ItemProto
+
 
 @dataclass
 class StatsComponent:
@@ -32,7 +33,7 @@ class StatsComponent:
         )
 
     def saldiri_gucu(self, el: OyuncuSlotu = None) -> float:
-        el = el or self.dominant_el
+        el = el or self.sahip.dominant_el
         ekipman = self.sahip.al(EquipmentComponent)
         item: ItemProto | None = ekipman.kusanilan.get(el)
         if item is None:
@@ -45,6 +46,8 @@ class StatsComponent:
         return self.base_ceviklik + sum(
             p.ceviklik_bonusu for p in ekipman.kusanilan.values() if p
         )
+    def tasima_limiti(self) -> float:
+        return self.sahip.al(WeightComponent).kalan_limit
 
     def to_dict(self) -> dict:
         return {
@@ -53,6 +56,9 @@ class StatsComponent:
             "base_saldiri_gucu": self.base_saldiri_gucu,
             "base_ceviklik": self.base_ceviklik,
             "base_tasima_limiti": self.base_tasima_limiti,
+            "zirh": self.zirh,
+            "ceviklik": self.ceviklik,
+            "saldiri_gucu": self.saldiri_gucu(),
         }
 
     @classmethod
@@ -66,6 +72,7 @@ class StatsComponent:
         obj.base_saldiri_gucu = data.get("base_saldiri_gucu", 0)
         obj.base_ceviklik = data.get("base_ceviklik", 0)
         obj.base_tasima_limiti = data.get("base_tasima_limiti", 0)
+
         obj.calculate_stats()
         return obj
 
@@ -74,5 +81,5 @@ class StatsComponent:
         self.can = self.attribute_component.dayaniklilik * 20
         self.base_zirh = self.attribute_component.dayaniklilik * 1.5
         self.base_saldiri_gucu = self.attribute_component.guc * 3
-        self.base_ceviklik = self.attribute_component.ceviklik
+        self.base_ceviklik = self.attribute_component.hiz * 0.5
         self.base_tasima_limiti = self.attribute_component.guc * 2.5

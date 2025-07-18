@@ -16,10 +16,25 @@
   "nitelikler": {
     "guc": 5.5,
     "zeka": 12.0,
-    "ceviklik": 18.0,
+    "hiz": 18.0,
     "dayaniklilik": 3.0
+  },
+  "stats": {
+    "can": 60.0,
+    "base_zirh": 4.5,
+    "base_saldiri_gucu": 16.5,
+    "base_ceviklik": 9.0,
+    "base_tasima_limiti": 13.75,
+    "zirh": 4.5,
+    "ceviklik": 9.0,
+    "saldiri_gucu": 16.5
   },
   "konum": {
     "bulundugu_bolge": "Sisli Koy"
+  },
+  "agirlik": {
+    "toplam_agirlik": 0.0,
+    "kalan_limit": 13.75,
+    "agirlik_yuzdesi": 0.0
   }
 }

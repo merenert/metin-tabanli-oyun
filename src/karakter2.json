@@ -1,7 +1,7 @@
 {
   "isim": "Balin",
   "irk": "ork",
-  "sinif": "okcu",
+  "sinif": "savasci",
   "dominant_el": "SAG_KOL",
   "envanter": {},
   "ekipman": {
@@ -14,12 +14,27 @@
     }
   },
   "nitelikler": {
-    "guc": 12.0,
-    "zeka": 7.0,
-    "ceviklik": 8.0,
-    "dayaniklilik": 10.0
+    "guc": 15.0,
+    "zeka": 2.0,
+    "hiz": 4.0,
+    "dayaniklilik": 14.0
+  },
+  "stats": {
+    "can": 280.0,
+    "base_zirh": 21.0,
+    "base_saldiri_gucu": 45.0,
+    "base_ceviklik": 2.0,
+    "base_tasima_limiti": 37.5,
+    "zirh": 21.0,
+    "ceviklik": 2.0,
+    "saldiri_gucu": 45.0
   },
   "konum": {
     "bulundugu_bolge": "Sisli Koy"
+  },
+  "agirlik": {
+    "toplam_agirlik": 0.0,
+    "kalan_limit": 37.5,
+    "agirlik_yuzdesi": 0.0
   }
 }

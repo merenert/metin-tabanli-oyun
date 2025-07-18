@@ -1,5 +1,6 @@
 from core.datatypes import MapRegion
 from systems.eventbus import event_bus
+from systems.components.attributes import AttributeComponent
 class LocationComponent:
     def __init__(self, sahip, baslangic_bolge: str):
         self.sahip = sahip
@@ -9,7 +10,8 @@ class LocationComponent:
         mevcut = regions[self.bulundugu_bolge]
         if yeni_bolge not in mevcut.komsular:
             return False
-
+        if self.hareket_edebilir_mi():
+            return False
         onceki = self.bulundugu_bolge
         self.bulundugu_bolge = yeni_bolge
 
@@ -19,6 +21,9 @@ class LocationComponent:
             "yeni": yeni_bolge
         })
         return True
+
+    def hareket_edebilir_mi(self) -> bool:
+        return self.sahip.al(AttributeComponent).hiz == 0 and self.sahip.al(AttributeComponent).dayaniklilik == 0
 
     def to_dict(self) -> dict:
         return {"bulundugu_bolge": self.bulundugu_bolge}

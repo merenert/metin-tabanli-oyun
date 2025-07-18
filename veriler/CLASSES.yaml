@@ -2,13 +2,13 @@ okcu:
   class_id: "okcu"
   guc: 2.0
   zeka: 5.0
-  ceviklik: 3.0
+  hiz: 3.0
   dayaniklilik: 0.0
 
 savasci:
   class_id: "savasci"
   guc: 5.0
-  ceviklik: -1.0
+  hiz: -1.0
   zeka: 0.0
   dayaniklilik: 4.0
 
@@ -16,5 +16,5 @@ assassin:
   class_id: "assassin"
   guc: 0.0
   zeka: 4.0
-  ceviklik: 7.0
+  hiz: 7.0
   dayaniklilik: -2.0

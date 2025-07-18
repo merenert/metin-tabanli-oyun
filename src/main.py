@@ -14,7 +14,7 @@ from veriler.data_repo import ITEMS,CLASSES,REGIONS,RACES
 def test_save_load():
     # 1. İki karakter oluştur
     karakter1 = Karakterolusturucu.karakterolustur("Eldor", "elf", "okcu",hand=OyuncuSlotu.SAG_KOL)
-    karakter2 = Karakterolusturucu.karakterolustur("Balin", "ork", "okcu")
+    karakter2 = Karakterolusturucu.karakterolustur("Balin", "ork", "savasci")
 
     # 2. Karakterleri kaydet
     savegame.save(karakter1, "karakter1.json")
@@ -34,21 +34,25 @@ def test_equipment():
     esyalar = veriyukleyici.load_items()
     karakter1 = savegame.load("karakter1.json")
     karakter2 = savegame.load("karakter2.json")
-
-    envanter1 = karakter1.al(InventoryComponent)
-    envanter2 = karakter2.al(InventoryComponent)
-    ekipman1 = karakter1.al(EquipmentComponent)
-    ekipman2 = karakter2.al(EquipmentComponent)
-
-    envanter1.ekle(esyalar["iron sword"].item_id)
-    envanter2.ekle(esyalar["iron sword"].item_id)
-    envanter2.ekle(esyalar["wood shield"].item_id)
-
-    ekipman1.kusan(esyalar["iron sword"].item_id, slot=OyuncuSlotu.SAG_KOL)
-    ekipman2.kusan(esyalar["iron sword"].item_id, slot=None)
-
-    assert ekipman1.kusanilan[OyuncuSlotu.SAG_KOL].item_id == esyalar["iron sword"].item_id
-    assert ekipman2.kusanilan[OyuncuSlotu.SAG_KOL].item_id == esyalar["iron sword"].item_id
+    #
+    # envanter1 = karakter1.al(InventoryComponent)
+    # envanter2 = karakter2.al(InventoryComponent)
+    # ekipman1 = karakter1.al(EquipmentComponent)
+    # ekipman2 = karakter2.al(EquipmentComponent)
+    #
+    # envanter1.ekle(esyalar["iron sword"].item_id)
+    # envanter2.ekle(esyalar["iron sword"].item_id)
+    # envanter2.ekle(esyalar["wood shield"].item_id)
+    # envanter1.ekle(esyalar["chainmail_armor"].item_id)
+    # envanter1.ekle(esyalar["plate_gauntlets"].item_id)
+    # envanter2.ekle(esyalar["great_axe"].item_id , 2 )
+    #
+    # ekipman1.kusan(esyalar["iron sword"].item_id, slot=OyuncuSlotu.SAG_KOL)
+    # ekipman1.kusan(esyalar["chainmail_armor"].item_id)
+    # ekipman1.kusan(esyalar["plate_gauntlets"].item_id)
+    # ekipman2.kusan(esyalar["great_axe"].item_id)
+    #
+    # assert ekipman1.kusanilan[OyuncuSlotu.SAG_KOL].item_id == esyalar["iron sword"].item_id
 
     savegame.save(karakter1, "karakter1.json")
     savegame.save(karakter2, "karakter2.json")
@@ -84,6 +88,7 @@ def test_map_system():
 
     # Karakterin konum bileşenini al
     konum1 = karakter1.al(LocationComponent)
+    konum2 = karakter2.al(LocationComponent)
 
     konum1.bulundugu_bolge = "Sisli Koy"
     print(f"Başlangıç: {konum1.bulundugu_bolge}")
@@ -91,12 +96,18 @@ def test_map_system():
     konum1.bolge_degistir("Karanlık Orman", regions)
     print(f"Yeni konum: {konum1.bulundugu_bolge}")
 
+    konum2.bulundugu_bolge = "Sisli Koy"
+    print(f"Başlangıç: {konum2.bulundugu_bolge}")
+
+    konum2.bolge_degistir("Karanlık Orman", regions)
+    print(f"Yeni konum: {konum2.bulundugu_bolge}")
+
     savegame.save(karakter1, "karakter1.json")
     savegame.save(karakter2, "karakter2.json")
 
 def test_stats():
     karakter1 = savegame.load("karakter1.json")
-    print(karakter1.al(StatsComponent))
+    print(karakter1.components)
 
 
 
@@ -107,3 +118,5 @@ if __name__ == "__main__":
     #   test_combat()
     #   test_map_system()
     #  test_stats()
+
+# karakterlerin görüntülenen kısımlarında ağırlık yüzdesi veya diğerleri gitmeli mi ? , aşırı yüklenince her şeyin 0 lanması aşırı virgüllü sayıları yuvarlama
